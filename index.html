@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <input id="email" placeholder="Email" />
+  <input id="password" type="password" placeholder="Password" />
+  <button onclick="login()">Login</button>
+  <p id="msg"></p>
+
+  <script>
+    const API_URL = "https://mini-project-backend-wf2t.onrender.com";
+
+    function login() {
+      fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: document.getElementById('email').value,
+          password: document.getElementById('password').value
+        })
+      })
+        .then(res => res.json())
+        .then(data => document.getElementById('msg').textContent = data.message);
+    }
+  </script>
+</body>
+</html>
