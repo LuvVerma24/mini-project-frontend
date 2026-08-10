@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <body>
+  <h3>Register</h3>
+  <input id="regEmail" placeholder="Email" />
+  <input id="regPassword" type="password" placeholder="Password" />
+  <button onclick="register()">Register</button>
+  <p id="regMsg"></p>
+
+  <h3>Login</h3>
   <input id="email" placeholder="Email" />
   <input id="password" type="password" placeholder="Password" />
   <button onclick="login()">Login</button>
@@ -8,6 +15,19 @@
 
   <script>
     const API_URL = "https://mini-project-backend-wf2t.onrender.com";
+
+    function register() {
+      fetch(`${API_URL}/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: document.getElementById('regEmail').value,
+          password: document.getElementById('regPassword').value
+        })
+      })
+        .then(res => res.json())
+        .then(data => document.getElementById('regMsg').textContent = data.message);
+    }
 
     function login() {
       fetch(`${API_URL}/login`, {
