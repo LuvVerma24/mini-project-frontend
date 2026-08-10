@@ -26,7 +26,7 @@
         })
       })
         .then(res => res.json())
-        .then(data => document.getElementById('regMsg').textContent = data.message);
+        .then(data => document.getElementById('regMsg').textContent = JSON.stringify(data));
     }
 
     function login() {
